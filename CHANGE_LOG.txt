@@ -154,14 +154,5 @@ After Cleaning:
 Data Quality Score: 100%
 
 
- NEXT STEPS
-
-
-1. Export cleaned dataset to CSV
-2. Upload to GitHub repository
-3. Share on LinkedIn with project summary
-4. Submit to DecodeLabs for verification
-5. Proceed to Project 2: Exploratory Data Analysis
-
 
 
