@@ -1,0 +1,167 @@
+
+ DATA CLEANING & PREPARATION - CHANGE LOG
+
+Project: Project 1 (Data Analytics Internship)
+Date: 2026-06-16 18:01:14
+Status: COMPLETED
+
+
+ PHASE 1: STRATEGIC IMPUTATION
+
+Change ID: CR001
+Description: Imputed missing CouponCode values
+Reason: 309 records (26%) had missing coupon codes. Using "NO_COUPON"
+        to explicitly indicate no coupon was used (vs. unknown value).
+Method: Fill missing values with "NO_COUPON"
+Records Affected: 309
+Impact: Preserved data integrity, no rows deleted
+Status: RESOLVED
+
+Change Details:
+- Before: 309 missing CouponCode values
+- After: 0 missing CouponCode values
+- All missing values filled with "NO_COUPON"
+
+ PHASE 2: THE INTEGRITY AUDIT
+
+
+Change ID: CR002
+Description: Removed duplicate records
+Reason: Full-row duplicates indicate data entry errors or system glitches
+Method: Removed rows that are 100% identical (drop_duplicates())
+Records Affected: 0
+Impact: Removed 0 redundant record(s)
+Status: RESOLVED
+
+Change Details:
+- Before: 1200 total records
+- After: 1200 total records
+- Duplicates removed: 0
+- OrderID uniqueness: 100% (all OrderIDs are unique)
+
+Change ID: CR003
+Description: Verified OrderID uniqueness
+Reason: OrderID is the primary key and must be unique
+Method: Checked that each OrderID appears exactly once
+Records Affected: 1200
+Status: VERIFIED - PASS
+
+Change Details:
+- Total records: 1200
+- Unique OrderIDs: 1200
+- Duplicate OrderIDs: 0
+- Uniqueness Rate: 100%
+
+
+ PHASE 3: SPEAK ONE LANGUAGE (STANDARDIZATION)
+
+
+Change ID: CR004
+Description: Standardized Date Format
+Reason: Dates are critical for analysis. Different formats cause errors.
+Method: Converted all dates to ISO 8601 format (YYYY-MM-DD)
+Records Affected: 1200
+Impact: 100% consistency in date representation
+Status: RESOLVED
+
+Change Details:
+- Format: YYYY-MM-DD (ISO 8601 international standard)
+- Date range: 2023-01-01 to 2025-06-30
+- Invalid dates found: 0
+- Standardization rate: 100%
+
+Change ID: CR005
+Description: Standardized Text Fields (Proper Case)
+Reason: Consistency in text prevents grouping errors (e.g., "Mumbai" vs "mumbai")
+Method: Applied Title Case and stripped whitespace from:
+         Product, PaymentMethod, OrderStatus, ReferralSource, CouponCode
+Records Affected: 1200
+Impact: All text fields now follow same capitalization rule
+Status: RESOLVED
+
+Change Details:
+- Columns affected: 5
+- Records cleaned: 1200
+- Leading/trailing spaces removed: Yes
+- Capitalization: Title Case applied
+
+Change ID: CR006
+Description: Standardized Price Format
+Reason: Prices must have consistent decimal precision (2 decimal places)
+Method: Rounded UnitPrice and TotalPrice to 2 decimal places
+Records Affected: 1200
+Impact: All prices now show exactly 2 decimals (e.g., $123.45)
+Status: RESOLVED
+
+Change Details:
+- Columns affected: UnitPrice, TotalPrice
+- Decimal precision: 2 decimal places
+- Records standardized: 1200
+
+Change ID: CR007
+Description: Recalculated TotalPrice for accuracy
+Reason: 107 records had TotalPrice ≠ (Quantity × UnitPrice)
+Method: Recalculated: TotalPrice = Quantity × UnitPrice (rounded to 2 decimals)
+Records Affected: 107
+Impact: Fixed calculation errors, improved data reliability
+Status: RESOLVED
+
+Change Details:
+- Records with mismatched prices: 107
+- Formula applied: TotalPrice = Quantity × UnitPrice
+- Verification after fix: All calculations now correct
+
+
+ FINAL VERIFICATION
+
+
+ GATE 1: Unique Identifiers
+   - Duplicate OrderID count: 0
+   - Error rate: 0%  PASS
+
+ GATE 2: Date Format
+   - Invalid date format count: 0
+   - Error rate: 0%  PASS
+
+ GATE 3: Missing Values
+   - Total missing values: 0
+   - Imputation success: 100%  PASS
+
+ GATE 4: Price Consistency
+   - Calculation errors: 0
+   - Accuracy: 100%  PASS
+
+
+ SUMMARY
+
+
+Total Changes Made: 7
+Total Records Cleaned: 1200
+Total Issues Resolved: 4
+
+Before Cleaning:
+- Rows: 1200
+- Missing values: 309
+- Calculation errors: 107
+- Duplicate records: 0
+
+After Cleaning:
+- Rows: 1200
+- Missing values: 0
+- Calculation errors: 0
+- Duplicate records: 0
+
+Data Quality Score: 100%
+
+
+ NEXT STEPS
+
+
+1. Export cleaned dataset to CSV
+2. Upload to GitHub repository
+3. Share on LinkedIn with project summary
+4. Submit to DecodeLabs for verification
+5. Proceed to Project 2: Exploratory Data Analysis
+
+
+
